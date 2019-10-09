@@ -12,8 +12,10 @@ from bson.objectid import ObjectId
 host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/Playlister')
 client = MongoClient(host=f'{host}?retryWrites=false')
 db = client.get_default_database()
-playlists = db.playlists
-comments = db.comments
+order = db.order
+saag_tofu = db.saag_tofu
+saag_seitan = db.saag_tofu
+saag_paneer = db.saag_tofu
 
 
 @app.route('/')
