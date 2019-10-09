@@ -24,6 +24,12 @@ def playlists_index():
     return render_template('playlists_index.html', playlists=playlists.find())
 
 
+@app.route('/')
+def saag_index():
+    """Shows the front page."""
+    return render_template('index.html', playlists=playlists.find())
+
+
 @app.route('/playlists/new')
 def playlists_new():
     """Create a new playlist."""
