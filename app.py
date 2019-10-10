@@ -37,26 +37,31 @@ def purchase_show(purchase_id):
     """Show a single purchase."""
     purchase = purchases.find_one(
         {'_id': ObjectId(purchase_id)})  # PyMongo add an '_id' field to each oject
-    return render_template('purchase_show.html', purchase=purchase,)
+    return render_template('purchase_show.html', purchase=purchase)
 
 
 @app.route('/cart/<purchase_id>', methods=['POST'])
 def purchase_update(purchase_id):
     """Edit and submit the edited purchase."""
-    updated_playlist = {
-        'title': request.form.get('title'),
-        'description': request.form.get('description'),
-        'videos': request.form.get('videos').split()
+    updated_purchase = {
+        'saag_paneer_number': request.form.get('saag_paneer_number'),
+        'saag_tofu_number': request.form.get('saag_tofu_number'),
+        'saag_seitan_number': request.form.get('saag_seitan_number'),
+        'name': request.form.get('name'),
+        'number': request.form.get('number'),
+        'phone': request.form.get('phone'),
+        'delivery_address': request.form.get('delivery_address'),
+        'email': request.form.get('email'),
     }
 
-    playlists.update_one(
-        {'_id': ObjectId(playlist_id)},
-        {'$set': updated_playlist})
-    return redirect(url_for('playlists_show', playlist_id=playlist_id))
+    purchases.update_one(
+        {'_id': ObjectId(purchase_id)},
+        {'$set': updated_purchase})
+    return redirect(url_for('cart', purchase_list=purchases.find(), purchase_id=purchase_id))
 
 
 @app.route('/cart', methods=['POST', 'GET'])
-def cart_submit():
+def cart():
     """creating new purchase."""
     if request.method == 'POST':
         purchase = {

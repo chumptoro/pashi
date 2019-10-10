@@ -38,30 +38,28 @@
 
 
                         <label for="name">Name</label>
-                        <input id="name" class="form-control" name="name" type="text" value = {{purchase.name}} required>
+                        <input id="name" class="form-control" name="name" type="text" value = {{purchase.name}} >
                         <div class="space-md"></div>
                         <div class="space-sm"></div>
 
                         <label for="email">Email</label>
-                        <input id="email" class="form-control" name="email" type="email" value = {{purchase.email}} required>
+                        <input id="email" class="form-control" name="email" type="email" value = {{purchase.email}} >
                         <div class="space-md"></div>
                         <div class="space-sm"></div>
 
                         <label for="phone">Phone number</label>
-                        <input id="phone" class="form-control" name="phone" value = {{purchase.phone}} required>
+                        <input id="phone" class="form-control" name="phone" value = {{purchase.phone}} >
                         <div class="space-md"></div>
                         <div class="space-sm"></div>
 
                         <label for="delivery_address">Street Address for Delivery</label>
-                        <input id="delivery_address" class="form-control" name="delivery_address" type="text" value = {{purchase.delivery_address}} required>
+                        <input id="delivery_address" class="form-control" name="delivery_address" type="text" value = {{purchase.delivery_address}}>
                         <div class="space-md"></div>
                         <div class="space-sm"></div>
    
                         <div class='form-group'>
-                		<button class='btn btn-primary' type='submit' formaction ='/cart/{{<purchase_id}}' >Edit Purchase</button>
+                		<button class='btn btn-primary' type='submit' formaction ='cart/{{purchase_id}}' formmethod="post" >Edit Purchase</button>
             			</div>
-                    
-                     <p><a href='/playlists/{{ playlist._id }}/edit'>Edit</a></p>
                 </div>
 			</form>
         </div>
