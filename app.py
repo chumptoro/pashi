@@ -24,12 +24,11 @@ def saag_index():
     """Shows the front page."""
     return render_template('index.html')
 
-
+'''
 @app.route('/cart')
 def saag_cart():
     """Shows the front page."""
     return render_template('cart.html', playlists=playlists.find())
-
 
 @app.route('/playlists/new')
 def playlists_new():
@@ -108,7 +107,7 @@ def comments_delete(comment_id):
     comment = comments.find_one({'_id': ObjectId(comment_id)})
     comments.delete_one({'_id': ObjectId(comment_id)})
     return redirect(url_for('playlists_show', playlist_id=comment.get('playlist_id')))
-
+'''
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT', 5000))

@@ -1,0 +1,199 @@
+<!-- templates/index.html -->
+
+{% extends 'base.html' %}
+
+
+{% block cover_content %}
+            <!-- Hero -->
+            <div class="jumbotron jumbotron-fluid bg-transparent hero section">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-12 col-lg-10 col-xl-9 mx-auto">
+                            <div class="hero-content text-center">
+                                <p class="lead lead-md"><strong>saag</strong> [/sa:g/] is an Indian curry of delicately spiced <strong>spinach and other greens</strong></p>
+                                <div class="space-sm"></div>
+                                <h1 class="hero-title">Saag as a Service</h1>
+                                <!-- Empty Space -->
+                                <div class="space-sm"></div>
+                                <!--/ End Empty Space -->
+                                <p class="lead lead-lg">The perfect delivery mechanism for the nutrition you need</p>
+                                <div class = "space-sm"></div>
+                                <a href="#get_saag" class="btn btn-lg btn-primary btn-outline-primary ips">Order Now</a>
+                                <div class ="d-none d-md-block">
+                                <div class="success-block" style = "display: none;">
+                                  <div class="space-md"></div>
+                                  <div class="alert alert-success" role="alert">
+                                    You've successfully ordered some delicious Saag! We'll get in touch about your order when it's on the way.
+                                  </div>
+                                </div>
+                                <div class="failure-block" style = "display: none;">
+                                  <div class="space-md"></div>
+                                  <div class="alert alert-danger" role="alert">
+                                    There seems to have been an issue with your payment. Feel free to try again.
+                                  </div>
+                                </div>
+                              </div>
+
+                                <!-- Empty Space -->
+                                <div class="space-md"></div>
+                                <!--/ End Empty Space -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row align-items-center d-none d-md-flex">
+                      <div class="col-12">
+                        <img class = "img-fluid" src = "{{url_for ('static', filename = 'assets/images/istock-saag-paneer-big.jpg')}}"></img>
+                        <div class="space-lg"></div>
+                      </div>
+                    </div>
+                    <div class="row feature" id='saag_options'>
+                      <div class="col-12">
+                        <div class="text-center">
+                          <h3>Three Types of Saag</h3>
+                          <p class="subtbelow">All <strong class="text-success">100% Vegetarian</strong></p>
+                          <div class="space-lg"></div>
+                        </div>
+                      </div>
+                        <div class="col-12 col-md-4">
+                            <div class="single-feature text-center text-lg-left">
+                                <img src="{{ url_for('static', filename = 'assets/images/undraw_old_day_6x25.svg') }}" alt="feature" class="img-fluid feature-img">
+                                <!-- Empty Space -->
+                                <div class="space-md"></div>
+                                <!--/ End Empty Space -->
+                                <h4 class="subtabove">Saag Paneer</h4>
+                                <h3 class="title">Classic <span class="badge badge-info">High Fat</span></h3>
+                                <!-- Empty Space -->
+                                <div class="space-sm"></div>
+                                <!--/ End Empty Space -->
+                                <p class="lead saagvariantdes">
+                                    Our <strong>keto-friendly</strong> Saag Paneer features Indian farm cheese in a delectable, perfectly spiced spinach sauce.
+                                </p>
+                                <table class="table d-md-none">
+                                <tbody>
+                                  <tr class = "table-info">
+                                    <td>500 cals</td>
+                                    <td>21g protein</td>
+                                    <td>43g fat</td>
+                                    <td>6g carbs</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="single-feature text-center text-lg-left">
+                                <img src="{{ url_for('static', filename ='./assets/images/undraw_Stability_ball_b4ia.svg')}}" alt="feature" class="img-fluid feature-img">
+                                <!-- Empty Space -->
+                                <div class="space-md"></div>
+                                <!--/ End Empty Space -->
+                                <h4 class="subtabove">Saag Tofu</h4>
+                                <h3 class="title">Balanced <span class="badge badge-success">Gluten &amp; Dairy Free</span></h3>
+                                <!-- Empty Space -->
+                                <div class="space-sm"></div>
+                                <!--/ End Empty Space -->
+                                <p class="lead saagvariantdes">
+                                    Our <strong>100% plant-based vegan</strong> Saag Tofu will leave you feeling light as a feather.
+                                </p>
+                                <table class="table d-md-none">
+                                <tbody>
+                                  <tr class = "table-success">
+                                    <td>500 cals</td>
+                                    <td>35g protein</td>
+                                    <td>38g fat</td>
+                                    <td>4g carbs</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="single-feature text-center text-lg-left">
+                                <img src="{{url_for('static', filename='assets/images/undraw_healthy_habit_bh5w.svg')}}" alt="feature" class="img-fluid feature-img">
+                                <!-- Empty Space -->
+                                <div class="space-md"></div>
+                                <!--/ End Empty Space -->
+                                <h4 class="subtabove">Saag Seitan</h4>
+                                <h3 class="title">Beast Mode <span class="badge badge-danger">Maximum Protein</span></h3>
+                                <!-- Empty Space -->
+                                <div class="space-sm"></div>
+                                <!--/ End Empty Space -->
+                                <p class="lead saagvariantdes">
+                                    With <strong>50g of protein</strong> per 500 calorie serving, Saag Seitan unlocks the muscle gains you've been waiting for. Seitan is a plant-based high-protein food made from concentrated wheat gluten.
+                                </p>
+                                <table class="table d-md-none">
+                                <tbody>
+                                  <tr class = "table-danger">
+                                    <td>500 cals</td>
+                                    <td>55g protein</td>
+                                    <td>27g fat</td>
+                                    <td>8g carbs</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row feature d-none d-md-flex">
+                        <div class="col-md-4">
+                            <div class="single-feature text-center text-lg-left">
+                              <div class="space-sm"></div>
+                                <table class="table">
+                                <tbody>
+                                  <tr class = "table-info">
+                                    <td>500 cals</td>
+                                    <td>21g protein</td>
+                                    <td>43g fat</td>
+                                    <td>6g carbs</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="single-feature text-center text-lg-left">
+                              <div class="space-sm"></div>
+                                <table class="table">
+                                <tbody>
+                                  <tr class = "table-success">
+                                    <td>500 cals</td>
+                                    <td>35g protein</td>
+                                    <td>38g fat</td>
+                                    <td>4g carbs</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="single-feature text-center text-lg-left">
+                              <div class="space-sm"></div>
+                                <table class="table">
+                                <tbody>
+                                  <tr class = "table-danger">
+                                    <td>500 cals</td>
+                                    <td>55g protein</td>
+                                    <td>27g fat</td>
+                                    <td>8g carbs</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row align-items-center text-center">
+                        <div class="col-12 col-lg-10 col-xl-9 mx-auto">
+                          <!-- Empty Space -->
+                          <div class="space-md"></div>
+                          <!--/ End Empty Space -->
+                          <a href="#get_saag" class="btn btn-lg btn-primary btn-outline-primary ips">Get Saag</a> <span class="d-none d-lg-inline px-4 btn-or">or</span> <a href="#why_saag" class="btn btn-lg btn-text ips">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/ End Hero -->
+{% endblock %}
+
+{% block content %}
+{% endblock %}
