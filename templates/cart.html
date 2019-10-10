@@ -1,0 +1,10 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for purchase in purchase_list %}
+	<h2>{{purchase.name}} bought {{purchase.saag_paneer_number}}</h2>
+{% endfor %}
+
+{% endblock %}

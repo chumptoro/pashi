@@ -37,9 +37,10 @@ def order():
     return render_template('order.html')
 
 
-@app.route('/cart', methods=['POST'])
+@app.route('/cart', methods=['POST', 'GET'])
 def cart():
     """creating new order."""
+
     purchase = {
         'saag_paneer_number': request.form.get('saag_paneer_number'),
         'saag_tofu_number': request.form.get('saag_tofu_number'),
@@ -51,17 +52,14 @@ def cart():
     }
     print(purchase)
     purchase_id = purchases.insert_one(playlist).inserted_id
+    purchase_list = purchases.find()
+    return render_template('cart.html', purchase_list=purchase_list)
 
-    return render_template('cart.html', purchases=)
 
-
-@app.route('/cart/<purchase_id>')
-def playlists_show(playlist_id):
-    """Show a single playlist."""
-    playlist = playlists.find_one(
-        {'_id': ObjectId(playlist_id)})  # PyMongo add an '_id' field to each oject
-    playlist_comments = comments.find({'playlist_id': ObjectId(playlist_id)})
-    return render_template('playlists_show.html', playlist=playlist, comments=playlist_comments)
+@app.route('/cart', methods=['GET'])
+def cart():
+    purchase_list = purchases.find()
+    return render_template('cart.html', purchase_list=purchase_list)
 
 
 '''
