@@ -1,4 +1,4 @@
-from pymongo import MongoClient
+# from pymongo import MongoClient
 import os
 
 from datetime import datetime
@@ -6,7 +6,7 @@ from datetime import datetime
 from flask import Flask, render_template, request, redirect, url_for
 app = Flask(__name__)
 
-from bson.objectid import ObjectId
+# from bson.objectid import ObjectId
 
 '''
 host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/Playlister')
@@ -23,6 +23,46 @@ saag_paneer = db.saag_tofu
 def saag_index():
     """Shows the front page."""
     return render_template('index.html')
+
+
+@app.route('/why_saag')
+def why_saag():
+    """Shows the front page."""
+    return render_template('why_saag.html')
+
+
+@app.route('/order')
+def order():
+    """Shows the order page."""
+    return render_template('order.html')
+
+
+@app.route('/cart', methods=['POST'])
+def cart():
+    """creating new order."""
+    purchase = {
+        'saag_paneer_number': request.form.get('saag_paneer_number'),
+        'saag_tofu_number': request.form.get('saag_tofu_number'),
+        'saag_seitan_number': request.form.get('saag_seitan_number'),
+        'name': request.form.get('name'),
+        'number': request.form.get('number'),
+        'phone': request.form.get('phone'),
+        'delivery_address': request.form.get('delivery_address'),
+    }
+    print(purchase)
+    purchase_id = purchases.insert_one(playlist).inserted_id
+
+    return render_template('cart.html', purchases=)
+
+
+@app.route('/cart/<purchase_id>')
+def playlists_show(playlist_id):
+    """Show a single playlist."""
+    playlist = playlists.find_one(
+        {'_id': ObjectId(playlist_id)})  # PyMongo add an '_id' field to each oject
+    playlist_comments = comments.find({'playlist_id': ObjectId(playlist_id)})
+    return render_template('playlists_show.html', playlist=playlist, comments=playlist_comments)
+
 
 '''
 @app.route('/cart')
