@@ -12,7 +12,7 @@
         <section id="features" class="section feature">
             <div class="container" id = "get_saag">
                 <div class="row">
-                  <form id="saag_order_form" class = "" action="#">
+                  <form id="saag_order_form" class = "" action="/cart">
                     <div class="col-12">
                         <!-- Empty Space -->
                         <div class="space-md"></div>
@@ -70,7 +70,7 @@
                                               </table>
                                               </label>
                                               <input type="number" min="0" placeholder="Number of portions of Saag Paneer" class="form-control" name="saag_paneer_number" id="saag_paneer_number" aria-describedby="saag_paneer_small">
-                                              <small id="saag_paneer_small"  class="form-text text-muted">Enter the number of portions of Saag Paneer you want this week.</small>
+                                              <small id="saag_paneer_small" class="form-text text-muted">Enter the number of portions of Saag Paneer you want this week.</small>
                                               <div class="space-sm"></div>
                                               <div class="space-md"></div>
                                               <p class="text-center">
@@ -171,12 +171,6 @@
                                             <!-- Empty Space -->
                                             <div class="pt-1"></div>
                                             <!--/ End Empty Space -->
-                                            <p class="lead">
-                                              Select your Zip Code below. If your Zip Code is not available to be selected, we unfortunately do not deliver to your area yet. If you'd like us to come to your area, email us at <strong>order@pashi.com</strong>.</p>
-                                              <div style = "padding: 3px 0;"></div>
-                                              <label for="zip">Zip Code</label>
-                                              <select id="zip" name="zip" autocomplete="new-password" class ="form-control iseligiblezip">
-                                              </select>
                                               <div class="space-md"></div>
                                               <label for="delivery_address">Street Address for Delivery</label>
                                               <input id="delivery_address" class="form-control" name="delivery_address" type="text" placeholder="" required>
@@ -187,39 +181,6 @@
                             <div class="col-12 col-md-6 col-lg-4">
                                 <div class="single-feature mt-4 text-center text-lg-left">
                                     <div class="row align-items-start">
-                                        <div class="col pr-lg-0">
-                                            <img src="./assets/images/thumb/noun_clock_2789434.svg" alt="deliver_time" class="icon">
-                                        </div>
-                                        <div class="col-12 col-lg-10 mt-4 mt-lg-0 mr-auto">
-                                            <h4 class="title">4. Delivery Time</h4>
-                                            <!-- Empty Space -->
-                                            <div class="pt-1"></div>
-                                            <!--/ End Empty Space -->
-                                            <p class = "lead">We deliver our meals freshly-cooked once a week. You can put them in your fridge and heat them up whenever you'd like to eat them!</p>
-                                            <div class="space-sm"></div>
-                                            <p>Currently available delivery date: <!--<strong>Friday, <span class="datespan" id = "friday"></span></strong>,--> <strong>Sunday, <span class="datespan" id = "sunday"></span></strong><!--, and <strong>Tuesday, <span class="datespan" id = "tuesday"></span></strong>, and <strong>Wednesday, <span class="datespan" id = "wednesday"></span></strong>-->.</p>
-                                            <div class="space-sm"></div>
-                                            <!-- <label for="friday_7p_10p" class="pure-radio">
-                                                <input id="friday_7p_10p" type="radio" name="delivery_time" value="friday_7p_10p" required>
-                                                Friday evening (between 7:00 p.m. and 10:00 p.m.)
-                                            </label> -->
-                                            <label for="sunday_2p_7p" class="pure-radio">
-                                                <input id="sunday_2p_7p" type="radio" name="delivery_time" value="sunday_2p_7p" required checked>
-                                                Sunday afternoon (between 2:00 p.m. and 7:00 p.m.)
-                                            </label>
-                                            <!-- <label for="tuesday_7p_10p" class="pure-radio">
-                                                <input id="tuesday_7p_10p" type="radio" name="delivery_time" value="tuesday_7p_10p" required checked>
-                                                Tuesday evening (between 7:00 p.m. and 10:00 p.m.)
-                                            </label> -->
-                                            <!-- <label for="wednesday_7p_10p" class="pure-radio">
-                                                <input id="wednesday_7p_10p" type="radio" name="delivery_time" value="wednesday_7p_10p" required checked>
-                                                Wednesday evening (between 7:00 p.m. and 10:00 p.m.)
-                                            </label> -->
-                                            <div class = "space-sm"></div>
-                                            <!-- <p>Orders of less than 5 portions of Saag will be charged a delivery fee of $8.</p>
-                                            <div class="space-sm"></div> -->
-                                            <div id="order_button" class="btn btn-lg btn-primary btn-outline-primary">Order</a>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
