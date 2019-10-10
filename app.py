@@ -1,4 +1,4 @@
-# from pymongo import MongoClient
+from pymongo import MongoClient
 import os
 
 from datetime import datetime
@@ -6,17 +6,12 @@ from datetime import datetime
 from flask import Flask, render_template, request, redirect, url_for
 app = Flask(__name__)
 
-# from bson.objectid import ObjectId
+from bson.objectid import ObjectId
 
-'''
-host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/Playlister')
-client = MongoClient(host=f'{host}?retryWrites=false')
-db = client.get_default_database()
-order = db.order
-saag_tofu = db.saag_tofu
-saag_seitan = db.saag_tofu
-saag_paneer = db.saag_tofu
-'''
+
+client = MongoClient()
+db = client.ContractorProject
+purchases = db.purchases
 
 
 @app.route('/')
@@ -37,10 +32,9 @@ def order():
     return render_template('order.html')
 
 
-@app.route('/cart', methods=['POST', 'GET'])
+@app.route('/cart', methods=['POST'])
 def cart():
-    """creating new order."""
-
+    """creating new purchase."""
     purchase = {
         'saag_paneer_number': request.form.get('saag_paneer_number'),
         'saag_tofu_number': request.form.get('saag_tofu_number'),
@@ -48,18 +42,27 @@ def cart():
         'name': request.form.get('name'),
         'number': request.form.get('number'),
         'phone': request.form.get('phone'),
-        'delivery_address': request.form.get('delivery_address'),
-    }
+        'delivery_address': request.form.get('delivery_address'), }
+    print("marco reus")
     print(purchase)
-    purchase_id = purchases.insert_one(playlist).inserted_id
-    purchase_list = purchases.find()
-    return render_template('cart.html', purchase_list=purchase_list)
+    purchase_id = purchases.insert_one(purchase).inserted_id
+    return redirect(url_for('purchase_show.html', purchase_id=purchase_id))
 
 
+@app.route('/cart/<purchase_id>')
+def purchase_show(purchase_id):
+    """Show a single purchase."""
+    purchase = purchase.find_one(
+        {'_id': ObjectId(purchase_id)})  # PyMongo add an '_id' field to each oject
+    return render_template('purchase_show.html', purchase=purchase)
+
+
+'''
 @app.route('/cart', methods=['GET'])
 def cart():
     purchase_list = purchases.find()
     return render_template('cart.html', purchase_list=purchase_list)
+    '''
 
 
 '''
