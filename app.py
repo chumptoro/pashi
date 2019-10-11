@@ -37,7 +37,7 @@ def purchase_show(purchase_id):
     """Show a single purchase."""
     purchase = purchases.find_one(
         {'_id': ObjectId(purchase_id)})  # PyMongo add an '_id' field to each oject
-    return render_template('purchase_show.html', purchase=purchase)
+    return render_template('purchase_show.html', purchase=purchase, purchase_id=purchase_id)
 
 
 @app.route('/cart/<purchase_id>', methods=['POST'])
@@ -81,6 +81,13 @@ def cart():
     if request.method == 'GET':
         purchase_list = purchases.find({})
         return render_template('cart.html', purchase_list=purchase_list)
+
+
+@app.route('/cart/<purchase_id>/cancel', methods=['POST'])
+def purchase_delete(purchase_id):
+    """Delete one purchase."""
+    purchases.delete_one({'_id': ObjectId(purchase_id)})
+    return render_template('cart.html', purchase_list=purchases.find({}), purchase_id=purchase_id)
 
 
 if __name__ == '__main__':

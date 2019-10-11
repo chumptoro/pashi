@@ -58,8 +58,15 @@
                         <div class="space-sm"></div>
    
                         <div class='form-group'>
-                		<button class='btn btn-primary' type='submit' formaction ='cart/{{purchase_id}}' formmethod="post" >Edit Purchase</button>
+                		<button class='btn btn-secondary' type='submit' formaction ='{{purchase_id}}' formmethod="post" >Edit Purchase</button>
             			</div>
+
+            			 <div class='form-group'>
+                		<button class='btn btn-primary' type='submit' formaction ='{{purchase_id}}/cancel' >Cancel Purchcase</button>
+            			</div>
+
+
+
                 </div>
 			</form>
         </div>

@@ -7,10 +7,13 @@
 {% for purchase in purchase_list %}
 	<div class='col-md-3'>
 		<h5>
-			<a href='/cart/{{ purchase._id }}'>{{purchase.name}} in {{purchase.delivery_address}} 
+
+			<a href='/cart/{{ purchase._id }}'>{{purchase.name}} from address {{purchase.delivery_address}} 
 			bought {{purchase.saag_paneer_number}} saag paneer orders, 
 			{{purchase.saag_tofu_number}} saag tofu orders,
 			{{purchase.saag_seitan_number}} saag seitan orders</a>
+			<div class="space-md"></div>
+            <div class="space-sm"></div>
 		</h5>
     </div>
 {% endfor %}
