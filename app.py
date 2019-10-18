@@ -29,7 +29,7 @@ login_manager.init_app(app)
 '''
 @app.route('/account')
 def account_details():
-    '''show details of user'''
+    show details of user
     if users.find_one({"username": session['username'], "password": session['password']}) == None:
         message = 'Please sign in or sign up first'
         return redirect(url_for('signin', message=message))
@@ -41,11 +41,116 @@ def account_details():
 @app.route('/account/<user_id>')
 def account_show(user_id):
     """Show a single purchase."""
-    account = users.find_one(
+    print('ACCOUNT_SHOW()')
+    user = users.find_one(
         {'_id': ObjectId(user_id)})  # PyMongo add an '_id' field to each oject
-    return render_template('purchase_show.html', account=account, user_id=user_id)
+    return render_template('user_show.html', user=user, user_id=user_id)
+
+
+@app.route('/account/<user_id>', methods=['POST'])
+def account_update(user_id):
+    """Edit and submit the edited account."""
+    updated_user = {
+        'username': request.form.get('username'),
+        'password': request.form.get('password'),
+    }
+
+    users.update_one(
+        {'_id': ObjectId(user_id)},
+        {'$set': updated_user})
+    return redirect(url_for('account_show', user=updated_user, user_id=user_id))
+
+
+@app.route('/signup')
+def signup():
+    '''x = users.delete_many({})'''
+    print(users.count())
+    return render_template('signup.html')
+
+
+@app.route('/account', methods=['POST', 'GET'])
+def account():
+    if request.method == 'POST':
+        new_username = request.form.get('username')
+        new_password = request.form.get('password')
+        new_user = {
+            'username': request.form.get('username'),
+            'password': request.form.get('password'),
+            'purchases': []
+        }
+        user_id = users.insert_one(new_user).inserted_id
+        print("NUMBER OF USER IS")
+        print(users.count())
+
+        session['username'] = request.form.get('username')
+        session['password'] = request.form.get('password')
+
+        user_found = users.find_one(
+            {'username': session['username'], 'password': session['password']})
+        print(user_found['username'])
+
+        return redirect(url_for('account_show', user=new_user, user_id=user_id))
+    else:
+        print(session['username'])
+        print(session['password'])
+        user_found = users.find_one(
+            {"username": session['username'], "password": session['password']})
+        '''print(user_found['username'])
+        print(user_found['password'])'''
+
+        if user_found == None:
+
+            message = 'Please sign in or sign up first'
+            print(message)
+            return render_template('signin.html', message=message)
+        else:
+            user_id = str(user_found['_id'])
+            return redirect(url_for('account_show', user=user_found, user_id=user_id))
+
+
+@app.route('/signout', methods=['POST'])
+def signout():
+    session['username'] = None
+    session['password'] = None
+    message = ''
+    return render_template('signin.html')
+
+
+@app.route('/signin')
+def signin():
+    return render_template('signin.html')
+
+
+@app.route('/signin/attempt', methods=['POST', 'GET'])
+def signin_attempt():
+    if request.method == 'POST':
+        attempted_username = request.form.get('username')
+        attempted_password = request.form.get('password')
+        existing_user = users.find_one(
+            {"username": attempted_username, "password": attempted_password})
+        if existing_user == None:
+            message = 'Incorrect login info.  Please try again. New user? Hit the sign up button'
+            return render_template('signin.html', message=message)
+        else:
+            session['username'] = request.form.get('username')
+            session['password'] = request.form.get('password')
+            user_id = str(existing_user['_id'])
+            return redirect(url_for('account_show', user=existing_user, user_id=user_id))
+    else:
+        return redirect(url_for('signin'))
+
+
+@app.route('/account/<user_id>/deactivate', methods=['POST'])
+def user_deactivate(user_id):
+    """Delete one user."""
+    users.delete_one({'_id': ObjectId(user_id)})
+    session['username'] = None
+    session['password'] = None
+
+    return redirect(url_for('saag_index'))
 
 '''
+
 @app.route('/signin')
 def signin():
     username_attempt = request.form.get('username')
@@ -56,20 +161,6 @@ def signin():
     else:
         return redirect(url_for('account_details'))
 '''
-
-
-@app.route('/signup')
-def signup():
-    new_username = request.form.get('username')
-    new_password = request.form.get('password')
-    new_user = {
-        'user_name': request.form.get('username'),
-        'password': request.form.get('password'),
-        'purchases': []
-    }
-    '''improve by sking for unique username'''
-    user_id = users.insert_one(new_user).inserted_id
-    return redirect(url_for('account_show', user_id=user_id))
 
 
 @app.route('/')

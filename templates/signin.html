@@ -3,73 +3,45 @@
 {% block content %}
 
 <section id="features" class="section feature">
-	<div class="container" id = "get_saag">
-		<h4 class="subtabove">Already Have An Account?</h4>
-		<div class="row">
-			<form method='POST' id="signin_form"  action="/cart/{{purchase._id}}">
-				<div class="col-12">
-					
-						<!-- paneer quantity -->
-						<label for="saag_paneer_number">Classic <strong>Saag Paneer</strong> 
-							<span class="badge badge-info" style="font-size: 100%">High Fat</span>
+    <div class="container" id = "signup">
+        <h4 class="subtabove"><strong>Welcome Back!</strong></h4>
+        <div class="space-sm"></div>
+        <div class="space-sm"></div>
+        <div class="row">
+            <form method='POST' id="signup_form"  action="/signin/attempt">
+                <div class="col-12">
+                        
+                        <label for="username" class="text-danger">{{message}}
                         </label>
-						<input type="number" min="0" placeholder="Number of portions of Saag Paneer" class="form-control" name="saag_paneer_number" id="saag_paneer_number" aria-describedby="saag_paneer_small" value ={{purchase.saag_paneer_number}}>
-                        <small id="saag_paneer_small" class="form-text text-muted">Edit the number of portions of Saag Paneer you want this week.  They are $12 per portion</small>
+                        <div class="space-sm"></div>
+                        <!-- Name -->
+                        <label for="username"><strong>User Name:</strong> 
+                        </label>
+                        <input type="text" placeholder="" class="form-control" name="username" id="username" aria-describedby="username">
+                        <small id="username_small" class="form-text text-muted">enter your user name</small>
+                        <div class="space-sm"></div>
+                        <div class="space-md"></div>
+
+                        <!-- Password -->
+                        <label for="password"><strong>Password:</strong> 
+                        </label>
+                        <input type="password" placeholder="" class="form-control" name="password" id="password" aria-describedby="password">
+                        <small id="password_small" class="form-text text-muted">enter your password</small>
                         <div class="space-sm"></div>
                         <div class="space-md"></div>
                  
-		
- 						<!-- tofu quantity -->
- 						<label for="saag_tofu_number">Balanced <strong>Saag Tofu</strong> 
- 							<span class="badge badge-success" style="font-size: 100%">Gluten &amp; Dairy Free</span><br />
-           				</label>
-                        <input type="number" min="0" placeholder="Number of portions of Saag Tofu" class="form-control" name="saag_tofu_number" id="saag_tofu_number" aria-describedby="saag_tofu_small" value = {{purchase.saag_tofu_number}}>
-                        <small id="saag_tofu_small"  class="form-text text-muted">Edit the number of portions of Saag Tofu you want this week.  They are $12 per portion</small>
-                        <div class="space-sm"></div>
-                        <div class="space-md"></div>
-                   
-
-                        <!-- seitan quantity -->
-                        <label for="saag_seitan_number">Beast Mode <strong>Saag Seitan</strong> <span class="badge badge-danger" style="font-size: 100%">High Protein</span><br />
-                       	</label>
-                        <input type="number" min="0" placeholder="Number of portions of Saag Seitan" class="form-control" name="saag_seitan_number" id="saag_seitan_number" aria-describedby="saag_seitan_small" value = {{purchase.saag_seitan_number}}>
-                        <small id="saag_seitan_small"  class="form-text text-muted">Edit the number of portions of Saag Seitan you want this week.  They are $14 per portion</small>
-                        <div class="space-sm"></div>
-                        <div class="space-md"></div>
-
-
-                        <label for="name">Name</label>
-                        <input id="name" class="form-control" name="name" type="text" value = {{purchase.name}} >
-                        <div class="space-md"></div>
-                        <div class="space-sm"></div>
-
-                        <label for="email">Email</label>
-                        <input id="email" class="form-control" name="email" type="email" value = {{purchase.email}} >
-                        <div class="space-md"></div>
-                        <div class="space-sm"></div>
-
-                        <label for="phone">Phone numb</label>
-                        <input id="phone" class="form-control" name="phone" value = {{purchase.phone}} >
-                        <div class="space-md"></div>
-                        <div class="space-sm"></div>
-
-                        <label for="delivery_address">Street Address for Delivery</label>
-                        <input id="delivery_address" class="form-control" name="delivery_address" type="text" value = {{purchase.delivery_address}}>
-                        <div class="space-md"></div>
-                        <div class="space-sm"></div>
+    
    
                         <div class='form-group'>
-                		<button class='btn btn-secondary' type='submit' formaction ='{{purchase_id}}' formmethod="post" >Edit Purchase</button>
-            			</div>
+                        <button class='btn btn-secondary' type='submit' >Sign In</button>
+                        </div>
 
-            			 <div class='form-group'>
-                		<button class='btn btn-primary' type='submit' formaction ='{{purchase_id}}/cancel' >Cancel Purchcase</button>
-            			</div>
+
 
 
 
                 </div>
-			</form>
+            </form>
         </div>
     </div>
 </section>
