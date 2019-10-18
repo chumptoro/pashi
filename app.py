@@ -29,15 +29,23 @@ login_manager.init_app(app)
 '''
 @app.route('/account')
 def account_details():
-    show details of user
+    '''show details of user'''
     if users.find_one({"username": session['username'], "password": session['password']}) == None:
         message = 'Please sign in or sign up first'
         return redirect(url_for('signin', message=message))
     else:
-        displays purchases associated with this account
+        return redirect(url_for('account_details'))
 '''
 
 
+@app.route('/account/<user_id>')
+def account_show(user_id):
+    """Show a single purchase."""
+    account = users.find_one(
+        {'_id': ObjectId(user_id)})  # PyMongo add an '_id' field to each oject
+    return render_template('purchase_show.html', account=account, user_id=user_id)
+
+'''
 @app.route('/signin')
 def signin():
     username_attempt = request.form.get('username')
@@ -46,6 +54,22 @@ def signin():
         message = 'incorrect login info.  please try again'
         return render_template('signin.html', message=message)
     else:
+        return redirect(url_for('account_details'))
+'''
+
+
+@app.route('/signup')
+def signup():
+    new_username = request.form.get('username')
+    new_password = request.form.get('password')
+    new_user = {
+        'user_name': request.form.get('username'),
+        'password': request.form.get('password'),
+        'purchases': []
+    }
+    '''improve by sking for unique username'''
+    user_id = users.insert_one(new_user).inserted_id
+    return redirect(url_for('account_show', user_id=user_id))
 
 
 @app.route('/')
